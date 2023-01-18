@@ -1,4 +1,25 @@
+:root {
+    --author-text-color:teal;
+
+}
 .author {
-	text-align: center;
-	font-size: 1.3em;
+    text-align: right;
+    margin: 10px 5px 0 0;
+    font-size: 1.3em;
+    color: white;
+    font-weight: lighter;
+    font-family: "Lato", sans-serif;
+    a {
+        text-decoration: none;
+        color: white;
+        transition: color, text-shadow, 100ms ease-in;
+        &:hover {
+            transition: color, text-shadow, 100ms ease-in;
+            color: var(--author-text-color);
+            text-shadow: 0 0 10px var(--author-text-color);
+        }
+        strong {
+            font-weight: bold;
+        }
+    }
 }
