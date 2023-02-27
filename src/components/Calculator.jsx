@@ -1,34 +1,136 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from 'react-bootstrap/Button';
+import { useDispatch, useSelector } from "react-redux";
+import { addOperator, addStuffs, clearStuff, removeStuff } from "../features/writeSlice";
+import { buttons } from "../data/button";
 
 const Calculator = () => {
-	const text = "6213123 X 123123"
-	const size = ""
-	const color = ""
+	const dispatch = useDispatch();
+	let readValue = useSelector(state => state.read.value)
+	let writeValue = useSelector(state => state.write.value)
+	useEffect(() => {
+		window.addEventListener("keydown", (e) => {
+			switch (e.key) {
+				case '1':
+					dispatch(addStuffs(e.key));
+					break;
+				case '2':
+					dispatch(addStuffs(e.key));
+					break;
+				case '3':
+					dispatch(addStuffs(e.key));
+					break;
+				case '4':
+					dispatch(addStuffs(e.key));
+					break;
+				case '5':
+					dispatch(addStuffs(e.key));
+					break;
+				case '6':
+					dispatch(addStuffs(e.key));
+					break;
+				case '7':
+					dispatch(addStuffs(e.key));
+					break;
+				case '8':
+					dispatch(addStuffs(e.key));
+					break;
+				case '9':
+					dispatch(addStuffs(e.key));
+					break
+				case '0':
+					dispatch(addStuffs(e.key));
+					break;
+				case '+':
+					console.log(e.key)
+					dispatch(addOperator(e.key));
+					break;
+				case '-':
+					console.log(e.key)
+					break;
+				case '*':
+					console.log(e.key)
+					break;
+				case '/':
+					console.log(e.key)
+					break;
+				case '.':
+					console.log(e.key)
+					break;
+				case '=':
+					console.log(e.key)
+					break;
+				case 'c':
+					console.log(e.key)
+					break;
+				case 'Shift':
+					break;
+				case 'Backspace':
+					dispatch(removeStuff())
+					break;
+				default:
+					console.log(e.key)
+					break;
+			}
+		})
+	}, [1])
+	const getValue = (e) => {
+		switch (e.target.getAttribute("data-value")) {
+			case 'number':
+				dispatch(addStuffs(e.target.textContent))
+				break;
+
+			case 'decimal': 
+				break;
+
+			case 'clear':
+				dispatch(clearStuff())
+				break;
+
+			case 'multiply': 
+				break;
+
+			case 'divide': 
+				break;
+
+			case 'add': 
+				break;
+
+			case 'subtract': 
+				break;
+
+			case 'equal': 
+				break;
+
+			default:
+				console.log("Unknown Operator Or Undefined")
+				break;
+		}
+	}
+
 	return (
 		<div className="calculator">
 			<div className="display-box">
-				{text}
+				<p>{readValue}</p>
+				<div className="display-box-rows" id="display">
+					<p>{writeValue}</p>
+				</div>
 			</div>
 			<div className="button-box">
-				<Button id="one" type="button" variant={color} size={size}>1</Button>
-				<Button id="two" type="button" variant={color} size={size}>2</Button>
-				<Button id="three" type="button" variant={color} size={size}>3</Button>
-				<Button id="four" type="button" variant={color} size={size}>4</Button>
-				<Button id="five" type="button" variant={color} size={size}>5</Button>
-				<Button id="six" type="button" variant={color} size={size}>6</Button>
-				<Button id="seven" type="button" variant={color} size={size}>7</Button>
-				<Button id="eight" type="button" variant={color} size={size}>8</Button>
-				<Button id="nine" type="button" variant={color} size={size}>9</Button>
-				<Button id="zero" type="button" variant={color} size={size}>0</Button>
-				<Button id="decimal" type="button" variant={color} size={size}>.</Button>
-				<Button id="all-clear" type="button" variant={color} size={size}>AC</Button>
-				<Button id="clear" type="button" variant={color} size={size}>C</Button>
-				<Button id="multiply" type="button" variant={color} size={size}>X</Button>
-				<Button id="division" type="button" variant={color} size={size}>/</Button>
-				<Button id="addition" type="button" variant={color} size={size}>+</Button>
-				<Button id="subtraction" type="button" variant={color} size={size}>-</Button>
-				<Button id="equals" type="button" variant={color} size={size}>=</Button>
+				{
+					buttons.map((btn) => {
+						return <Button 
+							data-value={btn.data}
+							data-btn-type={btn.type}
+							id={btn.id}
+							key={btn.id}
+							type="button"
+							onClick={getValue}
+							className="btn"
+							variant={btn.variant}>
+							{btn.value}</Button>
+					})
+				}
 			</div>
 		</div>
 	)
