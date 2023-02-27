@@ -10,7 +10,7 @@ const buttons = [
 	{ id: "nine", variant: "none", value: 9, data:"number", type: "digit" },
 	{ id: "zero", variant: "none", value: 0, data:"number", type: "digit" },
 	{ id: "decimal", variant: "none", value: ".", data:"decimal", type: "operator" },
-	{ id: "all-clear", variant: "none", value: "<", data:"all-clear", type: "operator" },
+	{ id: "backspace", variant: "none", value: "<", data:"backspace", type: "operator" },
 	{ id: "clear", variant: "none", value: "C" , data:"clear", type: "operator"},
 	{ id: "multiply", variant: "none", value: "X", data:"multiply", type: "operator" },
 	{ id: "divide", variant: "none", value: "/", data:"divide", type: "operator" },

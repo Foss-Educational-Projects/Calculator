@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from "react-redux";
-import { addOperator, addStuffs, clearStuff, removeStuff } from "../features/writeSlice";
+import { addDecimal, addOperator, addStuffs, clearStuff, getResult, removeStuff } from "../features/writeSlice";
 import { buttons } from "../data/button";
 
 const Calculator = () => {
@@ -47,29 +47,35 @@ const Calculator = () => {
 					break;
 				case '-':
 					console.log(e.key)
+					dispatch(addOperator(e.key));
 					break;
 				case '*':
 					console.log(e.key)
+					dispatch(addOperator(e.key));
 					break;
 				case '/':
 					console.log(e.key)
+					dispatch(addOperator(e.key));
 					break;
 				case '.':
 					console.log(e.key)
+					dispatch(addOperator(e.key));
 					break;
 				case '=':
 					console.log(e.key)
+					dispatch(getResult())
 					break;
 				case 'c':
-					console.log(e.key)
+					dispatch(clearStuff())
 					break;
 				case 'Shift':
+
 					break;
 				case 'Backspace':
 					dispatch(removeStuff())
 					break;
 				default:
-					console.log(e.key)
+					console.log("Key Is Not Assigned To Any Operation")
 					break;
 			}
 		})
@@ -80,7 +86,8 @@ const Calculator = () => {
 				dispatch(addStuffs(e.target.textContent))
 				break;
 
-			case 'decimal': 
+			case 'decimal':
+				dispatch(addDecimal("."));
 				break;
 
 			case 'clear':
@@ -88,20 +95,28 @@ const Calculator = () => {
 				break;
 
 			case 'multiply': 
+				dispatch(addOperator("*"));
 				break;
 
 			case 'divide': 
+				dispatch(addOperator("/"));
 				break;
 
 			case 'add': 
+				dispatch(addOperator("+"));
 				break;
 
 			case 'subtract': 
+				dispatch(addOperator("-"));
 				break;
 
 			case 'equal': 
+				dispatch(getResult())
 				break;
 
+			case 'backspace':
+				dispatch(removeStuff())
+				break;
 			default:
 				console.log("Unknown Operator Or Undefined")
 				break;
@@ -112,8 +127,8 @@ const Calculator = () => {
 		<div className="calculator">
 			<div className="display-box">
 				<p>{readValue}</p>
-				<div className="display-box-rows" id="display">
-					<p>{writeValue}</p>
+				<div className="display-box-rows">
+					<p id="display">{writeValue}</p>
 				</div>
 			</div>
 			<div className="button-box">
