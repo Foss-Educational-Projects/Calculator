@@ -1,53 +1,55 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { evaluate } from 'mathjs'
 const initialState = {
-	value: "0"
+	writeValue: "0",
+	readValue: null
 }
 
 const writeSlice = createSlice({
 	name: 'read',
 	initialState,
 	reducers: {
-		addStuffs: (state, action) => {
-			if (parseInt(state.value) === 0) {
-				state.value = action.payload.toString();
+		addNumbers: (state, action) => {
+			if (parseInt(state.writeValue) === 0) {
+				state.writeValue = `${action.payload}`;
 			}
 			else {
-				state.value = state.value + action.payload;
-				
+				state.writeValue = state.writeValue + `${action.payload}`;
 			}
 		},
 		addDecimal: (state, action) => {
-			if (state.value.includes(".")) {
+			if (state.writeValue.split(" ").reduce) {
 				console.log(". Already Present")
 			}
 			else {
-				state.value = state.value + action.payload;
+				state.writeValue = state.writeValue + `${action.payload}`;
 			}
 		},
 		addOperator: (state, action) => {
-			
-			if (typeof (parseInt(state.value[0])) === "int") {
-				console.log("cant add")
-			}
-			else if (state.value[state.value.length - 1] === action.payload) {
-				console.log("Its Same")
-			}
-			else {
-				state.value = state.value + action.payload.toString();
-			}
+			// if(action.payload ===)
 
 		}, 
-		removeStuff: (state, action) => {
-			state.value = state.value.slice(state.value[state.value.length], state.value.length - 1)
+		removeStuff: (state) => {
+			console.log(typeof(state.writeValue))
+			if (state.writeValue.toString().includes(" ")) {
+				state.writeValue = `${state.writeValue.slice(state.writeValue[state.writeValue.length], state.writeValue.length - 1)}`
+			}
+			else {
+				state.writeValue = `${state.writeValue.slice(0, state.writeValue.length - 1)}`
+				console.log("No space")
+			}
+
 		},
-		clearStuff: (state, action) => {
-			state.value = "0"
+		clearStuff: (state) => {
+			state.writeValue = "0"
 		},
-		getResult: (state, action) => {
-			state.value = evaluate(state.value)
+		getResult: (state) => {
+			state.writeValue = `${evaluate(state.writeValue)}`
+		},
+		setReadValue: (state) => {
+			state.readValue = state.writeValue;
 		}
 	}
 })
-export const { addStuffs, addOperator, removeStuff, clearStuff, getResult, addDecimal } = writeSlice.actions;
+export const { addNumbers, addOperator, removeStuff, clearStuff, getResult, addDecimal, setReadValue } = writeSlice.actions;
 export default writeSlice.reducer;
