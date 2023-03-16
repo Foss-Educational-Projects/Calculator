@@ -43,23 +43,23 @@ const Calculator = () => {
 					break;
 				case '+':
 					console.log(e.key)
-					dispatch(addOperator(e.key));
+					dispatch(addOperator({ key: e.key, type: 'operator' }));
 					break;
 				case '-':
 					console.log(e.key)
-					dispatch(addOperator(e.key));
+					dispatch(addOperator({ key: e.key, type: 'operator' }));
 					break;
 				case '*':
 					console.log(e.key)
-					dispatch(addOperator(e.key));
+					dispatch(addOperator({ key: e.key, type: 'operator' }));
 					break;
 				case '/':
 					console.log(e.key)
-					dispatch(addOperator(e.key));
+					dispatch(addOperator({ key: e.key, type: 'operator' }));
 					break;
 				case '.':
 					console.log(e.key)
-					dispatch(addOperator(e.key));
+					dispatch(addDecimal(e.key));
 					break;
 				case '=':
 					console.log(e.key)

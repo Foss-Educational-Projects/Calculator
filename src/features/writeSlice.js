@@ -18,7 +18,7 @@ const writeSlice = createSlice({
 			}
 		},
 		addDecimal: (state, action) => {
-			if (state.writeValue.split(" ").reduce) {
+			if (state.writeValue.lastIndexOf(".") !== -1) {
 				console.log(". Already Present")
 			}
 			else {
@@ -26,11 +26,24 @@ const writeSlice = createSlice({
 			}
 		},
 		addOperator: (state, action) => {
-			// if(action.payload ===)
-
+			var len = state.writeValue.length - 1;
+			if (state.writeValue[len] === action.payload.key) {
+				console.log("Same thing")
+			}
+			else {
+				if (action.payload.type === "operator") {
+					let text = state.writeValue.split("")
+					text[text.length - 1] = action.payload.key
+					text = text.join("")
+					console.log(state.writeValue)
+					state.writeValue = text;
+				}
+				
+			}
+			
 		}, 
 		removeStuff: (state) => {
-			console.log(typeof(state.writeValue))
+			console.log(typeof (state.writeValue))
 			if (state.writeValue.toString().includes(" ")) {
 				state.writeValue = `${state.writeValue.slice(state.writeValue[state.writeValue.length], state.writeValue.length - 1)}`
 			}
