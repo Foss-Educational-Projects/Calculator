@@ -132,9 +132,9 @@ const Calculator = () => {
 	return (
 		<div className="calculator">
 			<div className="display-box">
-				<p>{readValue}</p>
+				<p>{writeValue}</p>
 				<div className="display-box-rows">
-					<p id="display">{writeValue}</p>
+					<p id="display">{readValue}</p>
 				</div>
 			</div>
 			<div className="button-box">

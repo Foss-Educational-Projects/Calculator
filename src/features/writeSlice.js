@@ -11,10 +11,10 @@ const writeSlice = createSlice({
 	reducers: {
 		addNumbers: (state, action) => {
 			if (parseInt(state.writeValue) === 0) {
-				state.writeValue = `${action.payload}`;
+				state.writeValue = action.payload;
 			}
 			else {
-				state.writeValue = state.writeValue + `${action.payload}`;
+				state.writeValue = state.writeValue + action.payload;
 			}
 		},
 		addDecimal: (state, action) => {
@@ -22,7 +22,7 @@ const writeSlice = createSlice({
 				console.log(". Already Present")
 			}
 			else {
-				state.writeValue = state.writeValue + `${action.payload}`;
+				state.writeValue = state.writeValue + action.payload;
 			}
 		},
 		addOperator: (state, action) => {
@@ -55,12 +55,13 @@ const writeSlice = createSlice({
 		},
 		clearStuff: (state) => {
 			state.writeValue = "0"
+			state.readValue = "0"
 		},
 		getResult: (state) => {
 			state.writeValue = `${evaluate(state.writeValue)}`
 		},
 		setReadValue: (state) => {
-			state.readValue = state.writeValue;
+			state.readValue = state.readValue;
 		}
 	}
 })
