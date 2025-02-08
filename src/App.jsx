@@ -1,6 +1,7 @@
-import Calculator from './components/Calculator'
-import Author from './components/Author'
-import './assets/scss/main.scss'
+import Calculator from './components/calculator/Calculator.component'
+import Author from './components/author/Author'
+
+import './App.scss'
 
 
 function App() {
