@@ -1,5 +1,5 @@
 import Calculator from './components/calculator/Calculator.component'
-import Author from './components/author/Author'
+import Author from './components/author/Author.component'
 
 import './App.scss'
 
