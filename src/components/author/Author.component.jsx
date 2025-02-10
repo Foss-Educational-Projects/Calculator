@@ -1,5 +1,4 @@
-import React from "react";
-
+import './author.component.scss';
 
 const Author = () => {
 	return(
