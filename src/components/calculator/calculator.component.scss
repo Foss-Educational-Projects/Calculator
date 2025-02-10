@@ -6,7 +6,7 @@
 .calculator__main {
 	background-color: rgba(0,0,0,0.5);
 	width: 300px;
-	height: 400px;
+	height: 460px;
 	border-radius: 10px;
 	border: 1px solid teal;
 	padding: 10px;
@@ -17,16 +17,13 @@
 	text-align: right;
 	float: right;
 	width: 258px;
-	height: 100px;
+	height: 108px;
 	margin: 0 10px;
 	border-radius: 10px;
 	padding: 10px;
 	font-family: "Finlandica", sans-serif;
 	background: rgba(0, 0, 0, 0.7);
 	color: white;
-}
-.calculator__display__input {
-	block-size: fit-content;
 }
 .calculator__display__result {
 	letter-spacing: 1.5px;
