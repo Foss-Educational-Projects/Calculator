@@ -1,0 +1,10 @@
+0. 
+1. Can Input A Maximum of 20 Characters Including Everything
+2. Can Remove The Last Character Of The Input String
+3. Cannot Input Two Decimal Points Consecutively
+4. Cannot Input Addition, Multiplication & Division Operator Consecutively
+5. Can Input Subtraction Operator Consecutively For 2 Times
+6. Can Input Subtraction Operator For Once With Other Operators
+7. Cannot Put Any Arithmetic Operator Right After Decimal
+8. Cannot Put More Than 1 Decimal Point In A Number
+9. Can Type Numbers In Keyboards
