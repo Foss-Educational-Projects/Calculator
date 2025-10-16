@@ -11,30 +11,45 @@ import './calculator.component.scss';
 // Root Element
 const Calculator = () => {
 	const [text, setText] = useState("")
+	const [decimalStatus, setDecimalStatus ] = useState(false)
 	const [result, setResult] = useState("")
 	const [decimal, setDecmial] = useState(false)
 	const [operator, setOperator] = useState(false)
 
 	const handleInput = (e) => {
-		if (text.length < 21) {
+		if (text[0] === "0") {
+			setText((text) => e.target.value)
+		}
+		else if (text.length < 21) {
 			setText((text) => [...text, e.target.value])
 		}
 		console.log(text[text.length])
 	}
+	const operatorInput = (e) => {
+		setDecimalStatus(false)
+		if (text[0] === "0") {
+			setText((text) => e.target.value)
+		}
+		else if (text.length < 21) {
+			setText((text) => [...text, e.target.value])
+		}
+	}
 	const handleDecmialInput = (e) => {
-		if (text[text.length - 1] === ".") {
+
+		if (decimalStatus) {
 			setText((text) => [...text, ""])
 		}
 		else {
 			setText((text) => [...text, e.target.value])
+			setDecimalStatus(true)
 		}
 	}
 	const clearDisplayInput = () => {
 		setText("")
 	}
 	const clearFullDisplay = () => {
-		setText("")
-		setResult("")
+		setText("0")
+		setResult("0")
 	}
 	const removeLastInput = () => {
 		if (text.length !== 0) {
@@ -44,6 +59,7 @@ const Calculator = () => {
 	const evaluateInput = () => {
 		if (text.length > 0) {
 			const input = text.join("")
+			setText(math.evaluate(input))
 			setResult(math.evaluate(input))
 			console.log(input)
 		}
@@ -52,28 +68,28 @@ const Calculator = () => {
 	return (
 		<div className="calculator__main">
 			<section className="calculator__display">
-				<h4 className="calculator__display__input">{text}</h4>
+				<h4 id="display" className="calculator__display__input">{text}</h4>
 				<p className="calculator__display__result"><b>{result}</b></p>
 			</section>
 			<section className="calculator__buttons">
 				<div className="calculator__buttons__clear">
-					<Button size="lg" variant="dark" onClick={clearFullDisplay}>AC</Button>
+					<Button id="clear" size="lg" variant="dark" onClick={clearFullDisplay}>AC</Button>
 					<Button size="lg" variant="dark" onClick={clearDisplayInput}>C</Button>
 					<Button size="lg" variant="dark" onClick={removeLastInput}>&lt;</Button>
-					<Button size="lg" variant="dark" onClick={evaluateInput}>=</Button>
+					<Button id="equals" size="lg" variant="dark" onClick={evaluateInput}>=</Button>
 				</div>
 				<section className="calculator__buttons__combined">
 					<div className="calculator__buttons__number">
-						<Button size="lg" variant="primary" value="1" onClick={handleInput}>1</Button>
-						<Button size="lg" variant="primary" value="2" onClick={handleInput}>2</Button>
-						<Button size="lg" variant="primary" value="3" onClick={handleInput}>3</Button>
-						<Button size="lg" variant="primary" value="4" onClick={handleInput}>4</Button>
-						<Button size="lg" variant="primary" value="5" onClick={handleInput}>5</Button>
-						<Button size="lg" variant="primary" value="6" onClick={handleInput}>6</Button>
-						<Button size="lg" variant="primary" value="7" onClick={handleInput}>7</Button>
-						<Button size="lg" variant="primary" value="8" onClick={handleInput}>8</Button>
-						<Button size="lg" variant="primary" value="9" onClick={handleInput}>9</Button>
-						<Button size="lg" variant="primary" value="0" onClick={handleInput}>0</Button>
+						<Button id="one" size="lg" variant="primary" value="1" onClick={handleInput}>1</Button>
+						<Button id="two" size="lg" variant="primary" value="2" onClick={handleInput}>2</Button>
+						<Button id="three" size="lg" variant="primary" value="3" onClick={handleInput}>3</Button>
+						<Button id="four" size="lg" variant="primary" value="4" onClick={handleInput}>4</Button>
+						<Button id="five" size="lg" variant="primary" value="5" onClick={handleInput}>5</Button>
+						<Button id="six" size="lg" variant="primary" value="6" onClick={handleInput}>6</Button>
+						<Button id="seven" size="lg" variant="primary" value="7" onClick={handleInput}>7</Button>
+						<Button id="eight" size="lg" variant="primary" value="8" onClick={handleInput}>8</Button>
+						<Button id="nine" size="lg" variant="primary" value="9" onClick={handleInput}>9</Button>
+						<Button id="zero" size="lg" variant="primary" value="0" onClick={handleInput}>0</Button>
 
 						<Button size="lg" variant="danger" value="^" onClick={handleInput}>x<sup style={{fontSize: 'small'}}>n</sup></Button>
 						<Button size="lg" variant="danger" value="sqrt(" onClick={handleInput}>&radic;</Button>
@@ -83,17 +99,13 @@ const Calculator = () => {
 						<Button size="lg" variant="danger" value=")" onClick={handleInput}>&#41;</Button>
 					</div>
 					<div className="calculator__buttons__operator">
-						<Button size="lg" variant="danger" value="+" onClick={handleInput}>+</Button>
-						<Button size="lg" variant="danger" value="-" onClick={handleInput}>-</Button>
-						<Button size="lg" variant="danger" value="*" onClick={handleInput}>x</Button>
-						<Button size="lg" variant="danger" value="/" onClick={handleInput}>/</Button>
-						<Button size="lg" variant="danger" value="/" onClick={handleInput}>.</Button>
+						<Button id="add" size="lg" variant="danger" value="+" onClick={operatorInput}>+</Button>
+						<Button id="subtract" size="lg" variant="danger" value="-" onClick={operatorInput}>-</Button>
+						<Button id="multiply" size="lg" variant="danger" value="*" onClick={operatorInput}>x</Button>
+						<Button id="divide" size="lg" variant="danger" value="/" onClick={operatorInput}>/</Button>
+						<Button id="decimal" size="lg" variant="danger" value="." onClick={handleDecmialInput}>.</Button>
 					</div>
 				</section>
-
-
-
-
 
 			</section>
 		</div>

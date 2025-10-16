@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { evaluate } from 'mathjs'
 const initialState = {
 	writeValue: "0",
-	readValue: null
+	readValue: null,
+	decimalStatus: false
 }
 
 const writeSlice = createSlice({
@@ -10,7 +11,8 @@ const writeSlice = createSlice({
 	initialState,
 	reducers: {
 		addNumbers: (state, action) => {
-			if (parseInt(state.writeValue) === 0) {
+			console.log(state.writeValue)
+			if (parseInt(state.writeValue) == 0) {
 				state.writeValue = action.payload;
 			}
 			else {
